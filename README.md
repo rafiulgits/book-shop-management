@@ -32,9 +32,15 @@ open xampp and start Apache. Now php can connect will PostgreSQL with its functi
 #### Open postgresql terminal and login with default postgresql account and create a new role with password and permission
 
 ```
-CREATE ROLE projectdb;
+CREATE ROLE anonymous;
 ALTER ROLE projectdb WITH PASSWORD 'pass1234';
 ALTER ROLE projectdb WITH LOGIN;
 ALTER ROLE projectdb WITH CREATEDB;
+```
+
+close the terminal and reopen it and login with this new created role and create a new database and checkout the owner
+```
+CREATE DATABASE projectdb;
+\l
 ```
 [Find out more command in wiki](https://github.com/rafiulgits/swe328/wiki)
