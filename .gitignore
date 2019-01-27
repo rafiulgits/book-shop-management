@@ -15,3 +15,6 @@ storage/*.key
 Homestead.yaml
 Homestead.json
 /.vagrant
+
+# test files
+test/
