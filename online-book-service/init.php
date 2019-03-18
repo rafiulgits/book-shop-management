@@ -29,7 +29,22 @@
 		$res = pg_query($con, $sql);
 		echo "Staff table created"; 
 		echo "<br>";
+		//-----------------------------------------------
+		$sql ="CREATE TABLE  IF NOT EXISTS stock (
+
+			stock_id serial PRIMARY KEY,
+			entry_copy int NOT NULL,
+			enpenditure int NOT NULL,
+			sold_copy int NOT NULL,
+
+			staff_id varchar(12) REFERENCES staff(phone))";
+
+		$res = pg_query($con, $sql);
+		echo "stock table created"; 
+		echo "<br>";
 		//------------------------------------------
+
+
 		$sql ="CREATE TABLE  IF NOT EXISTS country (
 
 			name varchar(2) PRIMARY KEY)";
@@ -74,19 +89,9 @@
 		)";
 
 		$res = pg_query($con, $sql);
-		echo "user table created"; 
+		echo "Account table created"; 
 		echo "<br>";
-		//-----------------------------------------------
-		$sql ="CREATE TABLE  IF NOT EXISTS stock (
-
-			entry_copy int NOT NULL,
-			enpenditure int NOT NULL,
-			sold_copy int NOT NULL,
-			stock_id serial PRIMARY KEY)";
-
-		$res = pg_query($con, $sql);
-		echo "stock table created"; 
-		echo "<br>";
+		
 		//-------------------------------------------------
 
 		$sql ="CREATE TABLE  IF NOT EXISTS book (
@@ -128,7 +133,9 @@
 		$sql ="CREATE TABLE  IF NOT EXISTS voucher (
 			id bigint PRIMARY KEY,
 			total_price int NOT NULL,
-			quantity smallint NOT NULL
+			quantity smallint NOT NULL,
+
+			account_id varchar(12) REFERENCES account(phone)
 
 		)";
 
@@ -139,6 +146,21 @@
 
 
 		//--------------------------------------------
+		$sql ="CREATE TABLE  IF NOT EXISTS shipping (
+			area varchar(12) NOT NULL,
+			address varchar(30) NOT NULL,
+			sDate DATE NOT NULL,
+			sTime TIME NOT NULL,
+			status boolean NOT NULL,
+
+			voucher_id bigint REFERENCES voucher(id)
+		)";
+
+
+		$res = pg_query($con, $sql);
+		echo "shipping table created"; 
+		echo "<br>";
+		//-------------------------------------------	
 
 		$sql = "CREATE TABLE IF NOT EXISTS cart(
 
@@ -158,13 +180,17 @@
 			address varchar(30) NOT NULL,
 			sDate DATE NOT NULL,
 			sTime TIME NOT NULL,
-			status boolean NOT NULL
+			status boolean NOT NULL,
+
+			voucher_id bigint REFERENCES voucher(id)
 		)";
 
 
 		$res = pg_query($con, $sql);
 		echo "shipping table created"; 
 		echo "<br>";
+		//-------------------------------------------	
+		
 
 		
 
