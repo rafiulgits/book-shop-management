@@ -7,9 +7,8 @@
 	const dbname = "bookservicedb";
 
 
-	/**
-
-		TABLE
+	/*
+		TABLE SQL
 	*/
 	const TABLE_STAFF ="CREATE TABLE  IF NOT EXISTS staff (
 
