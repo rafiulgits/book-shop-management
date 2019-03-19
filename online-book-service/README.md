@@ -1,1 +1,1 @@
-![book service er diagram](er.svg)
+![book service er diagram](res/er.svg)
