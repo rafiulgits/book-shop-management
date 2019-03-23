@@ -1,13 +1,18 @@
 # :page_with_curl: SWE328
 #### Database management project with PHP web development framework and PostgreSQL database
+***
+<h1 align="center">
+ <a href=https://github.com/rafiulgits/swe328/wiki">Wikis</a>
 
+</h1>
+
+***
 ### Requirement:
  * [XAMPP](https://www.apachefriends.org/download.html)
  * [PostgreSQL](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads)
  
- 
-### setup:
 ***
+### setup:
 copy the repository in `xampp/htdoc/swe328`
 
 open `xampp/htdoc/php/php.ini-development` the file in a text editor and jump line `912` and `914` (in my case) this will seem like this
