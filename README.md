@@ -2,7 +2,7 @@
 #### Database management project with PHP web development framework and PostgreSQL database
 ***
 <h1 align="center">
- <a href=https://github.com/rafiulgits/swe328/wiki">Wikis</a>
+ <a href=https://github.com/rafiulgits/swe328/wiki>Wikis</a>
 
 </h1>
 
