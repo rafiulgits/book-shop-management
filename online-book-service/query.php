@@ -53,4 +53,24 @@ update book
 set price=(price-(price*0.10))
 where price > 120;
 
+// counting the available book of every author
+select (author.name) "Author", count(book.author_id) "Available Books"
+from author left join book on author.id=book.author_id
+group by author.name;
+
+
+// counting the available book of every category
+select (category.name) "Category", count(book.category_id) "Available Book"
+from category left join book on category.id=book.category_id
+group by category.name;
+
+
+// filter the unavailable books of an category
+select (name) "Empty Book" from category
+where id in
+(select id from category except select category_id from book);
+
+
+
+
 ?>
