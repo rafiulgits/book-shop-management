@@ -1,0 +1,90 @@
+<?php 
+
+	require_once './migrations.php';
+	require_once './procedures.php';
+/**
+* 
+*/
+
+class DB {
+
+	private $_ref;
+	private static $_instance = NULL;
+
+	private  function DB(){
+		try {
+			$this->_ref = @pg_connect("host=localhost port=5432 dbname=bookservicedb user=swe328 password=pass1234");
+			$this->migrateTable();
+			$this->migrateProcedure();
+		} catch (Exception $e) {
+			$this->_ref = NULL;
+		}
+	}
+
+	private function migrateTable(){
+		/*
+		migration chain
+		----------------
+		
+		1. TABLE_ACCOUNT
+		2. TABLE_STOCK
+		3. TABLE_COUNTRY
+		4. TABLE_AUTHOR
+		5. TABLE_PUBLISHER
+		6. TABLE_CATEGORY
+		7. TABLE_LANGUAGE
+		8. TABLE_BOOK
+		9. TABLE_VOUCHER
+		10.TABLE_CART
+		11.TABLE_SHIPPING
+
+		*/
+
+		try {
+			pg_query($this->_ref, TABLE_ACCOUNT);
+			pg_query($this->_ref, TABLE_STOCK);
+			pg_query($this->_ref, TABLE_COUNTRY);
+			pg_query($this->_ref, TABLE_AUTHOR);
+			pg_query($this->_ref, TABLE_PUBLISHER);
+			pg_query($this->_ref, TABLE_CATEGORY);
+			pg_query($this->_ref, TABLE_LANGUAGE);
+			pg_query($this->_ref, TABLE_BOOK);
+			// pg_query($_ref, TABLE_VOUCHER);
+			// pg_query($_ref, TABLE_SHIPPING);
+			// pg_query($_ref, TABLE_CART);
+
+			echo "database migrated<br>";
+		} catch (Exception $e) {
+			echo "database migrate failed<br>";
+		}
+	}
+
+	private function migrateProcedure(){
+		try {
+			pg_query($this->_ref, CREATE_ACCOUNT);
+			pg_query($this->_ref, ADD_COUNTRY);
+			pg_query($this->_ref, ADD_AUTHOR);
+			pg_query($this->_ref, ADD_PUBLISHER);
+			pg_query($this->_ref, ADD_CATEGORY);
+			pg_query($this->_ref, ADD_BOOK);
+
+			echo "procedures created<br>";
+		} catch (Exception $e) {
+			echo "failed<br>";
+		}
+	}
+
+	public static function connection(){
+		if(self::$_instance == NULL){
+			self::$_instance = new DB();
+		}
+		return self::$_instance;
+	}
+
+	public function getRefference(){
+		return $this->_ref;
+	}
+}
+
+
+ ?>

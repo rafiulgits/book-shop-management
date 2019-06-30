@@ -1,5 +1,5 @@
 <?php 
-
+	
 	const CREATE_ACCOUNT ="CREATE OR REPLACE PROCEDURE createAccount(
 			name varchar(80),
 			_phone varchar(11),
@@ -25,11 +25,17 @@
 		END;
 		$$";
 
+
+
+
 	const ADD_AUTHOR = "CREATE OR REPLACE PROCEDURE addAuthor(name varchar(30),bio varchar(50))
 		LANGUAGE SQL
 		AS $$
 			INSERT INTO author(name, bio) VALUES(name, bio)
 		$$";
+
+
+
 
 	const ADD_COUNTRY = "CREATE OR REPLACE PROCEDURE addCountry(_name varchar(2))
 		LANGUAGE plpgsql AS 
@@ -46,11 +52,17 @@
 		END;
 		$$";
 
+
+
+
 	const ADD_PUBLISHER = "CREATE OR REPLACE PROCEDURE addPublisher(name varchar(30),country_id int)
 		LANGUAGE SQL
 		AS $$
 			INSERT INTO publisher(name, country_id) VALUES(name, country_id);
 		$$";
+
+
+
 
 	const ADD_CATEGORY = "CREATE OR REPLACE PROCEDURE addCategory(_name varchar(15))
 		LANGUAGE plpgsql AS
@@ -68,15 +80,17 @@
 		$$";
 
 
+
+
 	const ADD_BOOK = "CREATE OR REPLACE PROCEDURE addBook(
 			name varchar(50),
-			lang varchar(2),
-			price numeric(7,2),
-			edition smallint,
 			_isbn bigint,
+			edition smallint,
 			category_id int,
 			author_id int,
 			publisher_id int,
+			language_id smallint,
+			price numeric(7,2),
 			entry_copy int,
 			entry_by int
 		)
@@ -94,8 +108,9 @@
 				INSERT INTO stock(entry_copy,expenditure,entry_by) 
 				VALUES(entry_copy,price*entry_copy,entry_by) RETURNING ID INTO _stock_id;
 
-				INSERT INTO book(name,language,price,edition,isbn,category_id,publisher_id,author_id,stock_id)
-				VALUES(name,lang,price,edition,_isbn,category_id,publisher_id,author_id,_stock_id);
+				INSERT INTO book(name,isbn,edition,category_id,author_id,publisher_id,price,stock_id)
+				VALUES(name,_isbn,edition,category_id,author_id,publisher_id,price,_stock_id);
+				RAISE NOTICE 'success';
 			END IF;
 		END;
 		$$";

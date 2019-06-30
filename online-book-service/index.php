@@ -1,8 +1,9 @@
 <?php 
 	
-	include './migrations.php';
-	include './procedures.php';
 
-	$connection = init();
-	createProcudures($connection);
+	include 'database.php';
+
+	$db = DB::connection();
+	echo $db->getRefference()
+
 ?>

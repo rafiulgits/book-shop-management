@@ -23,7 +23,6 @@
 		address varchar(50)
 	)";
 
-
 	const TABLE_STOCK ="CREATE TABLE  IF NOT EXISTS stock (
 		id serial PRIMARY KEY,
 		entry_copy int NOT NULL,
@@ -32,12 +31,10 @@
 		entry_by int REFERENCES account(id)
 	)";
 
-
 	const TABLE_COUNTRY ="CREATE TABLE  IF NOT EXISTS country (
 		id serial PRIMARY KEY,
 		name varchar(2) NOT NULL UNIQUE
 	)";
-
 
 	const TABLE_AUTHOR ="CREATE TABLE  IF NOT EXISTS author (
 		id serial PRIMARY KEY,
@@ -45,29 +42,31 @@
 		bio varchar(50)
 	)";
 
-
 	const TABLE_PUBLISHER ="CREATE TABLE  IF NOT EXISTS publisher (
 		id serial PRIMARY KEY,
 		name varchar(30) NOT NULL,
 		country_id int NOT NULL REFERENCES country(id)
 	)";
 
-
 	const TABLE_CATEGORY ="CREATE TABLE  IF NOT EXISTS category (
 		id serial PRIMARY KEY,
 		name varchar(15) NOT NULL UNIQUE
 	)";
 
+	const TABLE_LANGUAGE ="CREATE TABLE IF NOT EXISTS language (
+		id smallint PRIMARY KEY,
+		name varchar(10) NOT NULL UNIQUE
+	)";
 
 	const TABLE_BOOK ="CREATE TABLE  IF NOT EXISTS book (
 		name varchar(50) NOT NULL,
-		language varchar(2) NOT NULL DEFAULT 'BN',
 		price numeric(7,2) NOT NULL,
-		edition smallint NOT NULL DEFAULT 1,
 		isbn bigint PRIMARY KEY,
+		edition smallint NOT NULL,
 		category_id int REFERENCES category(id),
 		author_id int REFERENCES author(id),
 		publisher_id int REFERENCES publisher(id),
+		language_id smallint REFERENCES language(id),
 		stock_id int REFERENCES stock(id)
 	)";
 
@@ -82,7 +81,6 @@
 		voucher_id bigint REFERENCES voucher(voucher_id),
 		book_isbn bigint REFERENCES book(isbn) 
 	)";
-
 
 	const TABLE_SHIPPING ="CREATE TABLE  IF NOT EXISTS shipping (
 		area varchar(12) NOT NULL,
@@ -116,10 +114,11 @@
 		4. TABLE_AUTHOR
 		5. TABLE_PUBLISHER
 		6. TABLE_CATEGORY
-		7. TABLE_BOOK
-		8. TABLE_VOUCHER
-		9.TABLE_SHIPPING
+		7. TABLE_LANGUAGE
+		8. TABLE_BOOK
+		9. TABLE_VOUCHER
 		10.TABLE_CART
+		11.TABLE_SHIPPING
 
 		*/
 
@@ -130,6 +129,7 @@
 			pg_query($con, TABLE_AUTHOR);
 			pg_query($con, TABLE_PUBLISHER);
 			pg_query($con, TABLE_CATEGORY);
+			pg_query($con, TABLE_LANGUAGE);
 			pg_query($con, TABLE_BOOK);
 			// pg_query($con, TABLE_VOUCHER);
 			// pg_query($con, TABLE_SHIPPING);
