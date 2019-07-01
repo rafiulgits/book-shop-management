@@ -1,7 +1,8 @@
 <?php 
 
-	require_once './migrations.php';
-	require_once './procedures.php';
+	require_once 'tables.php';
+	require_once 'procedures.php';
+	require_once 'functions.php';
 /**
 * 
 */
@@ -16,6 +17,7 @@ class DB {
 			$this->_ref = @pg_connect("host=localhost port=5432 dbname=bookservicedb user=swe328 password=pass1234");
 			$this->migrateTable();
 			$this->migrateProcedure();
+			$this->migrateFunction();
 		} catch (Exception $e) {
 			$this->_ref = NULL;
 		}
@@ -37,7 +39,6 @@ class DB {
 		9. TABLE_VOUCHER
 		10.TABLE_CART
 		11.TABLE_SHIPPING
-
 		*/
 
 		try {
@@ -66,11 +67,24 @@ class DB {
 			pg_query($this->_ref, ADD_AUTHOR);
 			pg_query($this->_ref, ADD_PUBLISHER);
 			pg_query($this->_ref, ADD_CATEGORY);
+			pg_query($this->_ref, ADD_LANGUAGE);
 			pg_query($this->_ref, ADD_BOOK);
 
 			echo "procedures created<br>";
 		} catch (Exception $e) {
 			echo "failed<br>";
+		}
+	}
+
+	private function migrateFunction(){
+		try {
+			pg_query($this->_ref, GET_ALL_BOOKS);
+			pg_query($this->_ref, GET_ALL_CATEGORIES);
+			pg_query($this->_ref, GET_BOOK_STOCKS);
+
+			echo "functions created<br>";
+		} catch (Exception $e){
+			echo "function migrate failed<br>";
 		}
 	}
 

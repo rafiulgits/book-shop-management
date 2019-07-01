@@ -81,6 +81,22 @@
 
 
 
+	const ADD_LANGUAGE = "CREATE OR REPLACE PROCEDURE addLanguage(_name varchar(10))
+		LANGUAGE plpgsql AS 
+		$$
+		DECLARE
+			_exist int := 0;
+		BEGIN
+			SELECT COUNT(id) FROM lang WHERE name ILIKE _name INTO _exist;
+			IF _exist > 0 THEN
+				RAISE NOTICE 'country already exists';
+			ELSE
+				INSERT INTO lang(name) VALUES(_name);
+			END IF;
+		END;
+		$$";
+
+
 
 	const ADD_BOOK = "CREATE OR REPLACE PROCEDURE addBook(
 			name varchar(50),
@@ -89,7 +105,7 @@
 			category_id int,
 			author_id int,
 			publisher_id int,
-			language_id smallint,
+			language_id int,
 			price numeric(7,2),
 			entry_copy int,
 			entry_by int
@@ -108,53 +124,10 @@
 				INSERT INTO stock(entry_copy,expenditure,entry_by) 
 				VALUES(entry_copy,price*entry_copy,entry_by) RETURNING ID INTO _stock_id;
 
-				INSERT INTO book(name,isbn,edition,category_id,author_id,publisher_id,price,stock_id)
-				VALUES(name,_isbn,edition,category_id,author_id,publisher_id,price,_stock_id);
+				INSERT INTO book(name,isbn,edition,category_id,author_id,publisher_id,price,stock_id,language_id)
+				VALUES(name,_isbn,edition,category_id,author_id,publisher_id,price,_stock_id,language_id);
 				RAISE NOTICE 'success';
 			END IF;
 		END;
 		$$";
-
-
-
-	function createProcudures($con){
-		try {
-			pg_query($con, CREATE_ACCOUNT);
-			pg_query($con, ADD_COUNTRY);
-			pg_query($con, ADD_AUTHOR);
-			pg_query($con, ADD_PUBLISHER);
-			pg_query($con, ADD_CATEGORY);
-			pg_query($con, ADD_BOOK);
-			// pg_query($con, TABLE_VOUCHER);
-			// pg_query($con, TABLE_SHIPPING);
-			// pg_query($con, TABLE_CART);
-
-			echo "procedures created<br>";
-		} catch (Exception $e) {
-			echo "failed<br>";
-		}
-	}
-
-	// const ADD_BOOK = "CREATE OR REPLACE PROCEDURE addBook(
-	// 		name varchar(50),
-	// 		language varchar(2),
-	// 		price numeric(7,2),
-	// 		edition smallint, 
-	// 		isbn bigint, 
-	// 		category_id int,
-	// 		author_id int,
-	// 		publisher_id int,
-	// 		entry_copy int,
-	// 		account_id int
-	// 	)
-
-	// 	LANGUAGE SQL
-	// 	AS $$
-	// 		INSERT INTO stock(entry_copy, expenditure, staff_id) 
-	// 		VALUES (entry_copy, 1000, staff_id) RETURNING id;
-
-	// 		SELECT
-
-	// 	$$";
-
 ?>

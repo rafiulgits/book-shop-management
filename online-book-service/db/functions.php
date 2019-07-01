@@ -1,20 +1,22 @@
-CREATE OR REPLACE FUNCTION getAllBooks()
-RETURNS TABLE(isbn bigint, book varchar,price numeric,author varchar,publisher varchar,category varchar,available int)
+<?php 
+
+const GET_ALL_BOOKS = "CREATE OR REPLACE FUNCTION getAllBooks()
+RETURNS TABLE(isbn bigint, book varchar, edition smallint, author varchar,publisher varchar,category varchar, price numeric,available int)
 LANGUAGE plpgsql AS $$
 BEGIN
 	RETURN QUERY 
-	SELECT book.isbn,book.name,book.price,author.name,publisher.name,category.name,stock.entry_copy-stock.sold_copy
+	SELECT book.isbn,book.name,book.edition,author.name,publisher.name,category.name,book.price,lang.name,stock.entry_copy-stock.sold_copy
 	FROM book 
 	INNER JOIN author ON book.author_id=author.id
 	INNER JOIN publisher ON book.publisher_id=publisher.id
 	INNER JOIN category ON book.category_id=category.id
-	INNER JOIN stock ON book.stock_id=stock.id;
+	INNER JOIN stock ON book.stock_id=stock.id
+	INNER JOIN lang ON book.language_id=lang.id;
 END;
-$$;
--- // SELECT * FROM getAllBooks();
+$$";
 
 
-CREATE OR REPLACE FUNCTION getCategories()
+const GET_ALL_CATEGORIES = "CREATE OR REPLACE FUNCTION getCategories()
 RETURNS TABLE(id int, name varchar, available bigint)
 LANGUAGE plpgsql AS $$
 BEGIN
@@ -24,11 +26,10 @@ BEGIN
 	LEFT JOIN book ON category.id=book.category_id
 	GROUP BY category.id;
 END;
-$$;
--- // SELECT * FROM getCategories();
+$$";
 
 
-CREATE OR REPLACE FUNCTION getBookStocks()
+const GET_BOOK_STOCKS ="CREATE OR REPLACE FUNCTION getBookStocks()
 RETURNS TABLE(isbn bigint,book varchar,edition smallint,price numeric,
 			stock_id int, entry_copy int, sold_copy int, expenditure numeric,
 			staff_id int, staff_name varchar)
@@ -43,5 +44,5 @@ BEGIN
 	INNER JOIN book ON stock.id=book.stock_id
 	INNER JOIN account ON account.id=stock.entry_by;
 END;
-$$;
--- // SELECT * FROM getBookStocks();
+$$";
+?>

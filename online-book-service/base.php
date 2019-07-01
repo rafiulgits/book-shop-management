@@ -1,13 +1,5 @@
 <?php require_once 'static/lib/php/template.php' ?>
-<?php include 'migrations.php'; ?>
-<?php include 'db/getters.php'; ?>
-
-
-<?php 
-
-	$connection = init();
- ?>
-
+<?php require_once 'db/database.php'; ?>
 
 <!DOCTYPE html>
 <html>
@@ -18,6 +10,7 @@
 	<script type="text/javascript" src="static/lib/js/bootstrap.min.js"></script>
 	<?php startblock('header') ?>
 	<?php endblock() ?>
+
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #C70039">
@@ -31,10 +24,7 @@
 					<a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="signin.php">Sign in</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="account/profile.php">Account</a>
+					<a class="nav-link" href="forms/signin.php">Sign in</a>
 				</li>
 			</ul>
 		</div>

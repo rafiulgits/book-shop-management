@@ -69,3 +69,50 @@ group by category.name;
 select (name) "Empty Book" from category
 where id in
 (select id from category except select category_id from book);
+
+
+-- 
+-- BOOK SERVICE DATABASE RECORD ENTRY WITH PROCEDURES
+-- 
+
+CALL createAccount(
+	'Rafiul Islam',
+	'01XXXXXXXXX',
+	'rafiul@mail.com',
+	'M',
+	true,
+	true,
+	'Sylhet Sadar',
+	'pass1234');
+
+
+
+CALL addAuthor('Mofizur Rahman', 'English Literature');
+
+
+CALL addCountry('BN');
+
+
+CALL addPublisher('Jonota', 1);
+
+
+CALL addCategory('Art & Music');
+
+
+CALL addLanguage('Bengali');
+
+
+CALL addBook(
+	'Introduction to Petry'::varchar,
+	984700200422::bigint,
+	15::smallint,
+	1,
+	1,
+	1,
+	1,
+	150.5::numeric,
+	10,
+	1);
+
+
+
