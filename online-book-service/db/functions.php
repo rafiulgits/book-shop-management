@@ -1,7 +1,7 @@
 <?php 
 
 const GET_ALL_BOOKS = "CREATE OR REPLACE FUNCTION getAllBooks()
-RETURNS TABLE(isbn bigint, book varchar, edition smallint, author varchar,publisher varchar,category varchar, price numeric,available int)
+RETURNS TABLE(isbn bigint, book varchar, edition smallint, author varchar,publisher varchar,category varchar, price numeric, lang varchar, available int)
 LANGUAGE plpgsql AS $$
 BEGIN
 	RETURN QUERY 
@@ -45,4 +45,6 @@ BEGIN
 	INNER JOIN account ON account.id=stock.entry_by;
 END;
 $$";
+
+
 ?>

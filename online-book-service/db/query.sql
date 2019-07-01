@@ -71,6 +71,9 @@ where id in
 (select id from category except select category_id from book);
 
 
+-- login
+SELECT name,phone,email,address,gender FROM account WHERE email='' AND password='';
+
 -- 
 -- BOOK SERVICE DATABASE RECORD ENTRY WITH PROCEDURES
 -- 
@@ -83,7 +86,7 @@ CALL createAccount(
 	true,
 	true,
 	'Sylhet Sadar',
-	'pass1234');
+	'md5(pass1234)');
 
 
 
@@ -113,6 +116,8 @@ CALL addBook(
 	150.5::numeric,
 	10,
 	1);
+
+
 
 
 

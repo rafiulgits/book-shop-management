@@ -54,9 +54,9 @@ class DB {
 			// pg_query($_ref, TABLE_SHIPPING);
 			// pg_query($_ref, TABLE_CART);
 
-			echo "database migrated<br>";
+
 		} catch (Exception $e) {
-			echo "database migrate failed<br>";
+			echo "failed to migrated with tables <br>";
 		}
 	}
 
@@ -70,9 +70,8 @@ class DB {
 			pg_query($this->_ref, ADD_LANGUAGE);
 			pg_query($this->_ref, ADD_BOOK);
 
-			echo "procedures created<br>";
 		} catch (Exception $e) {
-			echo "failed<br>";
+			echo "failed to migrated with procedures <br>";
 		}
 	}
 
@@ -82,9 +81,8 @@ class DB {
 			pg_query($this->_ref, GET_ALL_CATEGORIES);
 			pg_query($this->_ref, GET_BOOK_STOCKS);
 
-			echo "functions created<br>";
 		} catch (Exception $e){
-			echo "function migrate failed<br>";
+			echo "failed to migrated with functions <br>";
 		}
 	}
 
