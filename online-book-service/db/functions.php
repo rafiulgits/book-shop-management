@@ -38,7 +38,7 @@ BEGIN
 	RETURN QUERY 
 	SELECT 
 		book.isbn,book.name,book.edition,book.price,
-		stock.id,stock.entry_copy,stock.sold_copy,stock.enpenditure,
+		stock.id,stock.entry_copy,stock.sold_copy,stock.expenditure,
 		account.id,account.name
 	FROM stock 
 	INNER JOIN book ON stock.id=book.stock_id
