@@ -40,7 +40,7 @@
 			</ul>
 		</div>
 		<form class="form-inline" action="./search.php">
-			<input class="form-control mr-sm-2" type="text" placeholder="Search">
+			<input class="form-control mr-sm-2" type="text" placeholder="Search" name="query">
 			<button class="btn btn-outline-success" type="submit">Search</button>
 		</form>
 	</nav>
