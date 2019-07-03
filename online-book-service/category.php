@@ -13,26 +13,32 @@
 	pg_close($db->getRefference());
 ?>
 
+<?php startblock('header') ?>
+	<title>Category - <?php echo $category_name; ?> : Nilkhet</title>
+<?php endblock() ?>
 
-<h5>All Books of category: <?php echo $category->name; ?></h5>
-
-<div class="container-fluid mt-3">
-	<div class="row">
-		<?php for($item=0; $item<count($arr); $item++): ?>
-			<div class="col-md-3">
-				<div class="card" style="width: 100%; height: 300px;">
-					<div class="card-body">
-						<h3 class="card-title"><?php echo $arr[$item]->book; ?></h3>
-						<p class="card-text display-4" style="font-size: 25px;">
-							<?php echo $arr[$item]->author; ?>
-							<br>
-							<?php echo $arr[$item]->price; ?> TK
-						</p>
-						<a href="book.php?isbn=<?php echo $arr[$item]->isbn ?>" class="btn btn-primary">Details</a>
+<?php startblock('content') ?>
+	<div class="container-fluid mt-5">
+		<p class="display-4 text-center">Category: <?php echo $category->name; ?></p>
+		<div class="row justify-content-center">
+			<?php for($item=0; $item<count($arr); $item++): ?>
+				<div class="col-md-3">
+					<div class="card" style="width: 100%; height: 300px;">
+						<div class="card-body">
+							<h3 class="card-title"><?php echo $arr[$item]->book; ?></h3>
+							<p class="card-text display-4" style="font-size: 20px;">
+								<?php echo $arr[$item]->author; ?>
+								<br>
+								<?php echo $arr[$item]->category; ?>
+								<br>
+								<?php echo $arr[$item]->price; ?> TK
+							</p>
+							<a href="book.php?isbn=<?php echo $arr[$item]->isbn ?>" class="btn btn-primary">Details</a>
+						</div>
 					</div>
 				</div>
-			</div>
-		<?php endfor; ?>
+			<?php endfor; ?>
+		</div>
 	</div>
-</div>
+<?php endblock() ?>
 

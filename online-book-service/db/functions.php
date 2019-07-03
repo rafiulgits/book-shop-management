@@ -29,6 +29,32 @@ END;
 $$";
 
 
+const GET_ALL_PUBLISHERS = "CREATE OR REPLACE FUNCTION getPublishers()
+RETURNS TABLE(id int, name varchar, available bigint)
+LANGUAGE plpgsql AS $$
+BEGIN
+	RETURN QUERY
+	SELECT publisher.id, publisher.name, count(book.publisher_id)
+	FROM publisher
+	LEFT JOIN book ON publisher.id=book.publisher_id
+	GROUP BY publisher.id;
+END;
+$$";
+
+
+const GET_ALL_AUTHORS = "CREATE OR REPLACE FUNCTION getAuthors()
+RETURNS TABLE(id int, name varchar, available bigint)
+LANGUAGE plpgsql AS $$
+BEGIN
+	RETURN QUERY
+	SELECT author.id, author.name, count(book.author_id)
+	FROM author
+	LEFT JOIN book ON author.id=book.author_id
+	GROUP BY author.id;
+END;
+$$";
+
+
 const GET_BOOK_STOCKS ="CREATE OR REPLACE FUNCTION getBookStocks()
 RETURNS TABLE(isbn bigint,book varchar,edition smallint,price numeric,
 			stock_id int, entry_copy int, sold_copy int, expenditure numeric,

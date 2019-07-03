@@ -79,6 +79,8 @@ class DB {
 		try {
 			pg_query($this->_ref, GET_ALL_BOOKS);
 			pg_query($this->_ref, GET_ALL_CATEGORIES);
+			pg_query($this->_ref, GET_ALL_PUBLISHERS);
+			pg_query($this->_ref, GET_ALL_AUTHORS);
 			pg_query($this->_ref, GET_BOOK_STOCKS);
 
 		} catch (Exception $e){

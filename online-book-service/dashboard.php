@@ -7,7 +7,6 @@
 
 <?php startblock('content') ?>
 	<?php 
-		
 		$db = DB::connection();
 		$res = pg_exec($db->getRefference(), "SELECT * FROM getBookStocks();");
 		$arr = [];
@@ -18,7 +17,7 @@
 	?>
 	<div class="d-flex justify-content-center mt-3">
 		<div class="col-md-11">
-			<table class="table table-bordered">
+			<table class="table table-bordered bg-dark text-white">
 				<thead>
 					<th>ISBN</th>
 					<th>Book</th>
