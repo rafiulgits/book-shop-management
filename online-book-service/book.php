@@ -5,6 +5,7 @@
 	$db = DB::connection();
 	$res = pg_exec($db->getRefference(), "SELECT * FROM getAllBooks() WHERE isbn=$isbn;");
 	$obj = pg_fetch_object($res);
+	pg_close($db->getRefference());
  ?>
 
 
@@ -27,4 +28,3 @@
  		<h4 class="lead">Available: <?php echo $obj->available; ?></h4>
  	</div>
  </div>
-<?php pg_close($db->getRefference()); ?>

@@ -1,6 +1,12 @@
 <?php require_once 'static/lib/php/template.php' ?>
 <?php require_once 'db/database.php'; ?>
 
+<?php 
+
+// start session
+	session_start();
+ ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,15 +34,26 @@
 				<li class="nav-item">
 					<a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="signin.php">Sign in</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="signout.php">Sign out</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="dashboard.php">Dashboard</a>
-				</li>
+
+				 <?php if(isset($_SESSION['userid'])): ?>
+				 	<?php if($_SESSION['is_stuff']): ?>
+				 	<li class="nav-item">
+						<a class="nav-link" href="dashboard.php">Dashboard</a>
+					</li>
+				 	<?php endif; ?>
+				 	<li class="nav-item">
+						<a class="nav-link" href="signout.php">Sign out</a>
+					</li>
+				 <?php else: ?>
+				 	<li class="nav-item">
+						<a class="nav-link" href="signin.php">Sign in</a>
+					</li>
+				
+				 <?php endif; ?>
+
+
+				
+				
 			</ul>
 		</div>
 		<form class="form-inline" action="./search.php">

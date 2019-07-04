@@ -28,6 +28,28 @@ BEGIN
 END;
 $$";
 
+const GET_ALL_COUNTRIES = "CREATE OR REPLACE FUNCTION getCountries()
+RETURNS TABLE(id int, name varchar)
+LANGUAGE plpgsql AS $$
+BEGIN
+	RETURN QUERY
+	SELECT country.id, country.name
+	FROM country;
+END;
+$$";
+
+const GET_ALL_LANGUAGES = "CREATE OR REPLACE FUNCTION getLanguages()
+RETURNS TABLE(id int, name varchar, available bigint)
+LANGUAGE plpgsql AS $$
+BEGIN
+	RETURN QUERY
+	SELECT lang.id, lang.name, count(book.language_id)
+	FROM lang
+	LEFT JOIN book ON lang.id=book.language_id
+	GROUP BY lang.id;
+END;
+$$";
+
 
 const GET_ALL_PUBLISHERS = "CREATE OR REPLACE FUNCTION getPublishers()
 RETURNS TABLE(id int, name varchar, available bigint)

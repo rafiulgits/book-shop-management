@@ -10,7 +10,7 @@
 	$db = DB::connection();
 	$res = pg_exec($db->getRefference(), "SELECT * FROM getAllBooks() WHERE 
 										book ILIKE '%$query%' OR
-										author ILIKE '$%query%' OR
+										author ILIKE '%$query%' OR
 										publisher ILIKE '%$query%' OR
 										category ILIKE '%$query%'");
 

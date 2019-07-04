@@ -1,5 +1,5 @@
 <?php 
-	session_start(); 
+	//session_start(); 
 	include 'base.php';
 ?>
 
@@ -14,7 +14,7 @@
 			$email = $_POST['email'];
 			$password = $_POST['password'];
 			$hashed_password = md5($password);
-			$query = "SELECT id,name,phone,email,address,gender 
+			$query = "SELECT id,name,phone,email,address,gender,is_stuff,is_admin 
 						FROM account 
 						WHERE email='$email' AND password='$hashed_password';";
 
@@ -26,6 +26,8 @@
 		 		$_SESSION['valid'] = true;
 		 		$_SESSION['timeout'] = time();
 		 		$_SESSION['userid'] = $obj->id;
+		 		$_SESSION['is_stuff'] = $obj->is_stuff;
+		 		$_SESSION['is_admin'] = $obj->is_admin;
 		 		header('Location: index.php');
 		 	}
 		 	else {

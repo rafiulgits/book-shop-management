@@ -16,6 +16,7 @@
 	<title>Author - <?php echo $author_name; ?> : Nilkhet</title>
 <?php endblock() ?>
 
+
 <div class="container-fluid mt-5">
 	<div class="d-flex justify-content-center">
 		<div class="col-md-12 bg-dark text-white">
