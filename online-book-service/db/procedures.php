@@ -130,4 +130,46 @@
 			END IF;
 		END;
 		$$";
+
+
+
+	const UPDATE_BOOK = "CREATE OR REPLACE PROCEDURE updateBook(
+			_name varchar(50),
+			_isbn bigint,
+			_pre_isbn bigint,
+			_edition smallint,
+			_category_id int,
+			_author_id int,
+			_publisher_id int,
+			_language_id int,
+			_price numeric(7,2)
+		)
+	  
+		LANGUAGE plpgsql AS
+		$$
+		DECLARE
+			_exist_isbn int := 0;
+			_stock_isbn int := 0;
+		BEGIN
+			SELECT COUNT(isbn) FROM book WHERE isbn=_pre_isbn INTO _exist_isbn;
+			SELECT COUNT(isbn) FROM book WHERE isbn=_isbn INTO _stock_isbn;
+
+			IF _exist_isbn = 0 THEN
+				RAISE NOTICE 'no book exist on this ISBN';
+			ELSIF _isbn != _pre_isbn AND _stock_isbn > 0 THEN
+				RAISE NOTICE 'book is already added'; 
+			ELSE
+				UPDATE book SET name=_name WHERE isbn=_pre_isbn;
+				UPDATE book SET edition=_edition WHERE isbn=_pre_isbn;
+				UPDATE book SET category_id=_category_id WHERE isbn=_pre_isbn;
+				UPDATE book SET author_id=_author_id WHERE isbn=_pre_isbn;
+				UPDATE book SET publisher_id=_publisher_id WHERE isbn=_pre_isbn;
+				UPDATE book SET language_id=_language_id WHERE isbn=_pre_isbn;
+				UPDATE book SET price=_price WHERE isbn=_pre_isbn;
+				UPDATE book SET isbn=_isbn WHERE isbn=_pre_isbn;
+				RAISE NOTICE 'success';
+			END IF;
+		END;
+		$$;";
+
 ?>
