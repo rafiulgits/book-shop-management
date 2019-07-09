@@ -47,12 +47,18 @@
 					</li>
 				 	<?php endif; ?>
 				 	<li class="nav-item">
+						<a class="nav-link" href="profile.php">Profile</a>
+					</li>
+				 	<li class="nav-item">
 						<a class="nav-link" href="signout.php">Sign out</a>
 					</li>
 					
 				 <?php else: ?>
 				 	<li class="nav-item">
 						<a class="nav-link" href="signin.php">Sign in</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="signup.php">Sign up</a>
 					</li>
 				
 				 <?php endif; ?>

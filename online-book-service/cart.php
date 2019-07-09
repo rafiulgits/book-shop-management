@@ -2,12 +2,21 @@
 
 <?php startblock('header') ?>
 	<title>Cart</title>
+	<script type="text/javascript">
+		function doCheckout(){
+			$.get("cart/checkout.php");
+			return false;
+		}
+	</script>
 <?php endblock() ?>
 
 
 <?php
 	$arr = $_SESSION['user_cart'];
 	$total = 0;
+
+	// $r = substr(sha1(rand()), 0, 10);
+	// echo strtoupper($r);
  ?>
 
 
@@ -31,6 +40,6 @@
 			</tbody>
 		</table>
 		<h4 class="list-group-item text-right">Total: <?php echo $total; ?> TK</h4>
-		<a href="#" class="btn btn-success btn-lg float-right">Checkout</a>
+		<a href="#" class="btn btn-success btn-lg float-right" onclick="doCheckout();">Checkout</a>
 	</div>
 </div>
