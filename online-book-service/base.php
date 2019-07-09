@@ -21,7 +21,7 @@
 		}
 	</style>
 
-	
+
 
 	<?php startblock('header') ?>
 	<?php endblock() ?>
@@ -48,16 +48,16 @@
 				 	<li class="nav-item">
 						<a class="nav-link" href="signout.php">Sign out</a>
 					</li>
-					<li class ="nav-item">
-						<a class = "nav-link" href="cart.php">Cart <i class="fa fa-cart-plus"></i></a>
-					</li>
+					
 				 <?php else: ?>
 				 	<li class="nav-item">
 						<a class="nav-link" href="signin.php">Sign in</a>
 					</li>
 				
 				 <?php endif; ?>
-
+				 <li class ="nav-item">
+					<a class = "nav-link" href="cart.php">Cart <i class="fa fa-cart-plus"></i></a>
+				</li>
 
 				
 				
