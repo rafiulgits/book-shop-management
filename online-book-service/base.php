@@ -5,6 +5,9 @@
 
 // start session
 	session_start();
+	if(!isset($_SESSION['user_cart'])){
+		$_SESSION['user_cart'] = [];
+	}
  ?>
 
 <!DOCTYPE html>
@@ -20,8 +23,6 @@
 			background-color: #DAF7A6;
 		}
 	</style>
-
-
 
 	<?php startblock('header') ?>
 	<?php endblock() ?>

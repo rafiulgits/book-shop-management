@@ -3,8 +3,7 @@
 	/**
 	 * 
 	 */
-	class Item
-	{
+	class Item {
 		private $book_isbn;
 		private $book_price;
 		private $copy;
@@ -14,7 +13,7 @@
 			$this->book_price = $book_price;
 			$this->copy = 1;
 		}
-		public function getBookISBN(){
+		public function getISBN(){
 			return $this->book_isbn;
 		}
 		public function getTotal(){
@@ -27,6 +26,12 @@
 			if($this->copy==0)
 				return;
 			$this->copy = $this->copy - 1;
+		}
+		public function getCopy(){
+			return $this->copy;
+		}
+		public function getPrice(){
+			return $this->book_price;
 		}
 	}
  ?>

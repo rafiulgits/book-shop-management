@@ -24,7 +24,6 @@
  <div class="d-flex justify-content-center mt-3">
  	<div class="col-md-9 list-group-item bg-secondary text-white text-center">
  		<p class="display-4 text-center"><?php echo $obj->book; ?></p>
- 		<h1><?php echo count($_SESSION['user_cart']); ?></h1>
  		<h4 class="lead">
  			Author: <a class="text-white" href="author.php?name=<?php echo $obj->author ?>"><?php echo $obj->author; ?></a>
  		</h4>
