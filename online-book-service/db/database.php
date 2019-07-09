@@ -70,6 +70,8 @@ class DB {
 			pg_query($this->_ref, ADD_LANGUAGE);
 			pg_query($this->_ref, ADD_BOOK);
 			pg_query($this->_ref, UPDATE_BOOK);
+			pg_query($this->_ref, UPDATE_AUTHOR);
+			pg_query($this->_ref, UPDATE_PUBLISHER);
 
 		} catch (Exception $e) {
 			echo "failed to migrated with procedures <br>";

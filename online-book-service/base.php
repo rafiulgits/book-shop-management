@@ -1,6 +1,6 @@
 <?php require_once 'static/lib/php/template.php' ?>
 <?php require_once 'db/database.php'; ?>
-
+<?php require_once 'cart/item.php' ?>
 <?php 
 
 // start session
@@ -14,11 +14,15 @@
 	<script type="text/javascript" src="static/lib/js/jquery.min.js"></script>
 	<script type="text/javascript" src="static/lib/js/popper.min.js"></script>
 	<script type="text/javascript" src="static/lib/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<style type="text/css">
 		body, html {
 			background-color: #DAF7A6;
 		}
 	</style>
+
+	
+
 	<?php startblock('header') ?>
 	<?php endblock() ?>
 
@@ -43,6 +47,9 @@
 				 	<?php endif; ?>
 				 	<li class="nav-item">
 						<a class="nav-link" href="signout.php">Sign out</a>
+					</li>
+					<li class ="nav-item">
+						<a class = "nav-link" href="cart.php">Cart <i class="fa fa-cart-plus"></i></a>
 					</li>
 				 <?php else: ?>
 				 	<li class="nav-item">

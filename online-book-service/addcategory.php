@@ -1,18 +1,19 @@
 <?php include 'base.php'; ?>
 
 <?php startblock('header') ?>
-	<title>Add Language</title>
+	<title>Add Category</title>
 <?php endblock() ?>
+
 
 <?php 
 	$failed = false;
 	if($_SERVER['REQUEST_METHOD']=='POST'){
-		$language_name = $_POST['language_name'];
+		$category_name = $_POST['category_name'];
 		$db = DB::connection();
 		/*
-				addLanguage(_name varchar(10))
+				addCategory(_name varchar(15))
 		*/
-		$res = pg_query($db->getRefference(),"CALL addLanguage('$language_name'::varchar);");
+		$res = pg_query($db->getRefference(),"CALL addCategory('$category_name'::varchar);");
 		pg_close($db->getRefference());
 		if($res){
 			header('Refresh: 0; URL = dashboard.php');
@@ -26,13 +27,13 @@
 
 <div class="d-flex justify-content-center mt-4">
 	<div class="col-md-6 list-group-item">
-		<h4 class="lead text-center mb-3">Add New Language</h4>
+		<h4 class="lead text-center mb-3">Add New Category</h4>
 		<form method="POST">
 			<?php if($failed == true): ?>
 				<p class="alert alert-danger">insertion failed</p>
 			<?php endif; ?>
-			<label>Language Name</label>
-			<input class="form-control" type="text" name="language_name" required>
+			<label>Category Name</label>
+			<input class="form-control" type="text" name="category_name" required>
 			<br>
 			<button class="btn btn-success">Insert</button>
 		</form>

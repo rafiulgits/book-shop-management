@@ -87,7 +87,7 @@
 					<a href="publisher.php?name=<?php echo $languageList[$item]->name ?>" class="list-group-item"><?php echo $languageList[$item]->name; ?> 
 						(<?php echo $languageList[$item]->available; ?>)</a>
 					<?php endfor; ?>
-					<a href="addpublisher.php" class="list-group-item list-group-item-primary">Add Language</a>
+					<a href="addlanguage.php" class="list-group-item list-group-item-primary">Add Language</a>
 				</div>
 			</div>
 		</div>

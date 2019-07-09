@@ -172,4 +172,43 @@
 		END;
 		$$;";
 
+	const UPDATE_AUTHOR = "CREATE or REPLACE PROCEDURE updateAuthor(
+								_author_id int,
+								_author_name varchar(30),
+								_author_bio varchar(50) 
+
+		) 
+		LANGUAGE plpgsql AS 
+		$$
+			DECLARE
+				_author_count int:=0;
+			BEGIN
+				SELECT COUNT(id) FROM author WHERE id = _author_id INTO _author_count;
+				IF _author_count = 0 THEN
+					RAISE NOTICE 'noo author exist on this author id';
+				ELSE 
+					UPDATE author SET name = _author_name WHERE id = _author_id;
+					UPDATE author SET bio = _author_bio WHERE id = _author_id;
+					RAISE  NOTICE 'success';
+				END IF;
+			END;
+		$$;";
+
+		const UPDATE_PUBLISHER = "CREATE or REPLACE PROCEDURE updatePublisher(
+									_publisher_id int,
+									_publisher_name varchar(30)
+		)
+		LANGUAGE plpgsql AS
+		$$
+			DECLARE _publisher_count int:=0;
+			BEGIN
+				SELECT COUNT(id) FROM publisher WHERE id = _publisher_id INTO _publisher_count;
+				IF _publisher_count = 0 THEN
+					RAISE NOTICE 'noo publisher exist on this publisher id';
+				ELSE 
+					UPDATE publisher set name = _publisher_name WHERE id = _publisher_id;
+				END IF;
+			END;
+		$$;";
+
 ?>
