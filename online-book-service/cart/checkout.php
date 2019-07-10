@@ -64,7 +64,7 @@
 
 		}
 		unset($_SESSION['user_cart']);
-		header('Refresh: 0; URL = ../profile.php');
+		header('Refresh: 0; URL = ../index.php');
 		
 	}
 
