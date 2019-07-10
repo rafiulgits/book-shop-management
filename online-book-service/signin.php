@@ -28,7 +28,7 @@
 		 		$_SESSION['userid'] = $obj->id;
 		 		$_SESSION['is_stuff'] = $obj->is_stuff;
 		 		$_SESSION['is_admin'] = $obj->is_admin;
-		 		header('Location: index.php');
+		 		header('Location: profile.php');
 		 	}
 		 	else {
 		 		echo '

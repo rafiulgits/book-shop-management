@@ -70,16 +70,16 @@
 		stock_id int REFERENCES stock(id)
 	)";
 
+	const TABLE_CART = "CREATE TABLE IF NOT EXISTS cart(
+		voucher_id bigint REFERENCES voucher(voucher_id),
+		book_isbn bigint REFERENCES book(isbn) 
+	)";
+
 	const TABLE_VOUCHER ="CREATE TABLE  IF NOT EXISTS voucher (
 		voucher_id bigint PRIMARY KEY,
 		total_price int NOT NULL,
 		quantity smallint NOT NULL,
 		account_id varchar(12) REFERENCES account(phone)
-	)";
-
-	const TABLE_CART = "CREATE TABLE IF NOT EXISTS cart(
-		voucher_id bigint REFERENCES voucher(voucher_id),
-		book_isbn bigint REFERENCES book(isbn) 
 	)";
 
 	const TABLE_SHIPPING ="CREATE TABLE  IF NOT EXISTS shipping (

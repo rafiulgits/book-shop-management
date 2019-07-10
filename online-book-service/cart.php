@@ -17,6 +17,7 @@
 
 	// $r = substr(sha1(rand()), 0, 10);
 	// echo strtoupper($r);
+	// handle order.php post method
  ?>
 
 
@@ -40,6 +41,6 @@
 			</tbody>
 		</table>
 		<h4 class="list-group-item text-right">Total: <?php echo $total; ?> TK</h4>
-		<a href="#" class="btn btn-success btn-lg float-right" onclick="doCheckout();">Checkout</a>
+		<a href="order.php" class="btn btn-success btn-lg float-right">Checkout</a>
 	</div>
 </div>
