@@ -44,13 +44,15 @@
 			array_push($languageList, $data);
 		}
 
-		$res = pg_exec($db->getRefference(),"SELECT id,total_price,status FROM voucher;");
+		$res = pg_exec($db->getRefference(),"SELECT id,total_price,status,order_time,order_date FROM voucher;");
 		$orderList = [];
 		while($data = pg_fetch_object($res)){
 			array_push($orderList, $data);
 		}
 
 		pg_close($db->getRefference());
+
+		$map = array('P' => 'Pending', 'A' => 'Accepted', 'D' => 'Delivered');
 	?>
 
 	<div class="container-fluid mt-3">
@@ -105,7 +107,7 @@
 			<div class = "d-flax justify-content-center text-center">
 				<a class="btn btn-primary" href="addbook.php">Add new Book</a>
 			</div>
-			<table class="table table-bordered bg-dark text-white">
+			<table class="table table-bordered bg-dark text-white" id="book-table">
 				<thead>
 					<th>ISBN</th>
 					<th>Book</th>
@@ -136,12 +138,14 @@
 
 	<br><br><br>
 	<div class="d-flex justify-content-center mt-3">
-		<div class="col-md-6">
+		<div class="col-md-7" id="order-table">
 			<p class="display-4 text-center">Order Table</p>
 			<table class="table table-bordered bg-dark text-white">
 				<thead>
 					<th>ID</th>
 					<th>Total</th>
+					<th>Time</th>
+					<th>Date</th>
 					<th>Status</th>
 				</thead>
 				<tbody>
@@ -149,7 +153,9 @@
 						<tr>
 							<td><a href="updateorder.php?id=<?php echo  $orderList[$item]->id ?>"><?php echo $orderList[$item]->id; ?></a></td>
 							<td><?php echo $orderList[$item]->total_price; ?> TK</td>
-							<td><?php echo $orderList[$item]->status; ?></td>
+							<td><?php echo $orderList[$item]->order_time; ?></td>
+							<td><?php echo $orderList[$item]->order_date; ?></td>
+							<td><?php echo $map[$orderList[$item]->status]; ?></td>
 						</tr>
 					<?php endfor; ?>
 				</tbody>

@@ -59,10 +59,8 @@
 			pg_query($db->getRefference(),$update_query);
 			$update_query = "UPDATE stock SET sold_copy = sold_copy+$copy WHERE id = $stock_id";
 			pg_query($db->getRefference(),$update_query);
-			
-			pg_close($db->getRefference());
-
 		}
+		pg_close($db->getRefference());
 		unset($_SESSION['user_cart']);
 		header('Refresh: 0; URL = ../index.php');
 		

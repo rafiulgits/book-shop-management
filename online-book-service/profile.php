@@ -10,6 +10,13 @@
 	$res = pg_query($db->getRefference(), "SELECT name,phone,email,gender,address
 											FROM account WHERE id=$id;");
 	$user = pg_fetch_object($res);
+	$res = pg_query($db->getRefference(), "SELECT id, status, order_time, order_date FROM voucher WHERE email ILIKE '$user->email';");
+	$orderList = [];
+	while($data = pg_fetch_object($res)){
+		array_push($orderList, $data);
+	}
+	pg_close($db->getRefference());
+	$map = array('P' => 'Pending', 'A' => 'Accepted', 'D' => 'Delivered');
  ?>
 
 
@@ -24,3 +31,25 @@
  		</div>
  	</div>
  </div>
+
+<div class="d-flex justify-content-center">
+	<div class="col-md-6 mt-4">
+		<br>
+		<h4 class="lead text-center">Orders</h4>
+		<table class="table table-bordered bg-dark text-white">
+			<thead>
+				<th>ID</th><th>Time</th><th>Date</th><th>status</th>
+			</thead>
+			<tbody>
+				<?php for($i=0; $i<count($orderList); $i++): ?>
+					<tr>
+						<td><?php echo $orderList[$i]->id; ?></td>
+						<td><?php echo $orderList[$i]->order_time; ?></td>
+						<td><?php echo $orderList[$i]->order_date; ?></td>
+						<td><?php echo $map[$orderList[$i]->status]; ?></td>
+					</tr>
+				<?php endfor; ?>
+			</tbody>
+		</table>
+	</div>
+</div>

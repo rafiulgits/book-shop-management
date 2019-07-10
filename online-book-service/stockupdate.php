@@ -27,7 +27,7 @@
 		pg_query($db->getRefference(),$update_query);
 		
 		pg_close($db->getRefference());
-		header('Refresh: 0; URL = dashboard.php');
+		header('Refresh: 0; URL = dashboard.php#book-table');
 
 	}
  ?>

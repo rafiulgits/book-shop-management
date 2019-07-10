@@ -78,7 +78,9 @@
 		phone varchar(11) NOT NULL,
 		email varchar(45),
 		address varchar(50) NOT NULL,
-		status varchar(1) NOT NULL DEFAULT 'P'
+		status varchar(1) NOT NULL DEFAULT 'P',
+		order_time time DEFAULT CURRENT_TIME,
+		order_date date DEFAULT CURRENT_DATE
 	)";
 
 

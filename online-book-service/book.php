@@ -40,8 +40,10 @@
  		<h4 class="lead">Available: <?php echo $obj->available; ?></h4>
  		<br>
  		<br>
- 		<button class="btn btn-success" onclick="addToCart(<?php echo $obj->isbn; ?>, <?php echo $obj->price; ?>)">
- 			Add to Cart
- 		</button>
+ 		<?php if($obj->available > 0): ?>
+	 		<button class="btn btn-success" onclick="addToCart(<?php echo $obj->isbn; ?>, <?php echo $obj->price; ?>)">
+	 			Add to Cart
+	 		</button>
+	 	<?php endif; ?>
  	</div>
  </div>
