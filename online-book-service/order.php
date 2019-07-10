@@ -17,7 +17,7 @@
 	<div class="col-md-6 list-group-item">
 		<h4 class="lead text-center">Order</h4>
 		<?php if(!isset($_SESSION['userid'])): ?>
-			<form>
+			<form method="POST" action="cart/checkout.php">
 				<label>Name</label>
 				<input type="text" name="name" class="form-control mb-3" required>
 				<label>Phone</label>
@@ -29,7 +29,7 @@
 				<button class="btn btn-success">Place order</button>
 			</form>
 		<?php else: ?>
-			<form>
+			<form method="POST" action="cart/checkout.php">
 				<label>Name</label>
 				<input type="text" name="name" class="form-control mb-3" 
 					value="<?php echo $user->name; ?>" required>

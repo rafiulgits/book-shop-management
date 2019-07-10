@@ -36,9 +36,8 @@ class DB {
 		6. TABLE_CATEGORY
 		7. TABLE_LANGUAGE
 		8. TABLE_BOOK
-		9. TABLE_VOUCHER
+		9. TABLE_ORDER
 		10.TABLE_CART
-		11.TABLE_SHIPPING
 		*/
 
 		try {
@@ -50,9 +49,8 @@ class DB {
 			pg_query($this->_ref, TABLE_CATEGORY);
 			pg_query($this->_ref, TABLE_LANGUAGE);
 			pg_query($this->_ref, TABLE_BOOK);
-			// pg_query($_ref, TABLE_VOUCHER);
-			// pg_query($_ref, TABLE_SHIPPING);
-			// pg_query($_ref, TABLE_CART);
+			pg_query($this->_ref, TABLE_VOUCHER);
+		    pg_query($this->_ref, TABLE_CART);
 
 
 		} catch (Exception $e) {

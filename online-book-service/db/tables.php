@@ -70,24 +70,26 @@
 		stock_id int REFERENCES stock(id)
 	)";
 
+
+	const TABLE_VOUCHER ="CREATE TABLE IF NOT EXISTS voucher (
+		id serial PRIMARY KEY,
+		total_price numeric(10,2) NOT NULL,
+		name varchar(80) NOT NULL,
+		phone varchar(11) NOT NULL,
+		email varchar(45),
+		address varchar(50) NOT NULL,
+		status varchar(1) NOT NULL DEFAULT 'P'
+	)";
+
+
 	const TABLE_CART = "CREATE TABLE IF NOT EXISTS cart(
-		voucher_id bigint REFERENCES voucher(voucher_id),
-		book_isbn bigint REFERENCES book(isbn) 
+		id serial PRIMARY KEY,
+		book_isbn bigint REFERENCES book(isbn),
+		book_price numeric(7,2),
+		book_copy int NOT NULL,
+		subtotal numeric(8,2),
+		voucher_id int REFERENCES voucher(id)
+
 	)";
 
-	const TABLE_VOUCHER ="CREATE TABLE  IF NOT EXISTS voucher (
-		voucher_id bigint PRIMARY KEY,
-		total_price int NOT NULL,
-		quantity smallint NOT NULL,
-		account_id varchar(12) REFERENCES account(phone)
-	)";
-
-	const TABLE_SHIPPING ="CREATE TABLE  IF NOT EXISTS shipping (
-		area varchar(12) NOT NULL,
-		address varchar(30) NOT NULL,
-		sDate DATE NOT NULL,
-		sTime TIME NOT NULL,
-		status boolean NOT NULL,
-		voucher_id bigint REFERENCES voucher(voucher_id)
-	)";
 ?>

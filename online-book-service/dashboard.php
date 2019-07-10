@@ -44,6 +44,11 @@
 			array_push($languageList, $data);
 		}
 
+		$res = pg_exec($db->getRefference(),"SELECT id,total_price,status FROM voucher;");
+		$orderList = [];
+		while($data = pg_fetch_object($res)){
+			array_push($orderList, $data);
+		}
 
 		pg_close($db->getRefference());
 	?>
@@ -118,10 +123,33 @@
 							<td><a href="updatebook.php?isbn=<?php echo  $arr[$item]->isbn ?>"><?php echo $arr[$item]->book; ?></a> </td>
 							<td><?php echo $arr[$item]->edition; ?></td>
 							<td><?php echo $arr[$item]->price; ?></td>
-							<td><?php echo $arr[$item]->entry_copy; ?><a class="float-right " href="#">add</a></td>
+							<td><?php echo $arr[$item]->entry_copy; ?><a class="float-right " href="stockupdate.php?isbn=<?php echo $arr[$item]->isbn; ?>">add</a></td>
 							<td><?php echo $arr[$item]->sold_copy; ?> </td>
 							<td><?php echo $arr[$item]->expenditure; ?></td>
 							<td><?php echo $arr[$item]->staff_name; ?></td>
+						</tr>
+					<?php endfor; ?>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<br><br><br>
+	<div class="d-flex justify-content-center mt-3">
+		<div class="col-md-6">
+			<p class="display-4 text-center">Order Table</p>
+			<table class="table table-bordered bg-dark text-white">
+				<thead>
+					<th>ID</th>
+					<th>Total</th>
+					<th>Status</th>
+				</thead>
+				<tbody>
+					<?php for($item=0; $item<count($orderList); $item++): ?>
+						<tr>
+							<td><a href="updateorder.php?id=<?php echo  $orderList[$item]->id ?>"><?php echo $orderList[$item]->id; ?></a></td>
+							<td><?php echo $orderList[$item]->total_price; ?> TK</td>
+							<td><?php echo $orderList[$item]->status; ?></td>
 						</tr>
 					<?php endfor; ?>
 				</tbody>

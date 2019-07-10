@@ -40,7 +40,9 @@
 				<?php endfor; ?>
 			</tbody>
 		</table>
-		<h4 class="list-group-item text-right">Total: <?php echo $total; ?> TK</h4>
-		<a href="order.php" class="btn btn-success btn-lg float-right">Checkout</a>
+		<?php if(count($arr) !=0): ?>
+			<h4 class="list-group-item text-right">Total: <?php echo $total; ?> TK</h4>
+			<a href="order.php" class="btn btn-success btn-lg float-right">Checkout</a>
+		<?php endif; ?>
 	</div>
 </div>
