@@ -71,7 +71,7 @@
 			</ul>
 		</div>
 		<form class="form-inline" action="./search.php">
-			<input class="form-control mr-sm-2" type="text" placeholder="Search" name="query">
+			<input class="form-control mr-sm-2" style="width: 300px;" type="text" placeholder="Book,Category,Author,Publisher" name="query">
 			<button class="btn btn-outline-success" type="submit">Search</button>
 		</form>
 	</nav>

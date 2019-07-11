@@ -43,7 +43,7 @@
 			<tbody>
 				<?php for($i=0; $i<count($orderList); $i++): ?>
 					<tr>
-						<td><?php echo $orderList[$i]->id; ?></td>
+						<td><a href="ordertrack.php?id=<?php echo $orderList[$i]->id; ?>"><?php echo $orderList[$i]->id; ?></a></td>
 						<td><?php echo $orderList[$i]->order_time; ?></td>
 						<td><?php echo $orderList[$i]->order_date; ?></td>
 						<td><?php echo $map[$orderList[$i]->status]; ?></td>

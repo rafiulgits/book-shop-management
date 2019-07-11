@@ -7,12 +7,13 @@
 <?php 
 
 	$query = $category_name = $_GET['query'];
+	$arr = explode(',', $query);
 	$db = DB::connection();
 	$res = pg_exec($db->getRefference(), "SELECT * FROM getAllBooks() WHERE 
-										book ILIKE '%$query%' OR
-										author ILIKE '%$query%' OR
-										publisher ILIKE '%$query%' OR
-										category ILIKE '%$query%'");
+										book ILIKE '%$arr[0]%' AND 
+										category ILIKE '%$arr[1]%' AND
+										author ILIKE '%$arr[2]%' AND
+										publisher ILIKE '%$arr[3]%';");
 
 	$bookList = [];
 	while ($data = pg_fetch_object($res)) {

@@ -2,11 +2,6 @@
 
 <?php startblock('header') ?>
 	<title>Update Order</title>
-	<script type="text/javascript">
-		function doPrint(){
-			window.print();
-		}
-	</script>
 <?php endblock(); ?>
 
 
@@ -67,27 +62,7 @@
 		</table>
 		<?php if($voucher->status != 'D'): ?>
 			<div></div>
-				<form class="form-inline" method="POST">
-					<div class="form-group">
-						<select class="custom-select" name="status">
-							<?php if($voucher->status == 'P'): ?>
-								<option value="A">Accepted</option>
-								<option value="D">Delivered</option>
-							<?php else: ?>
-								<option value="D">Delivered</option>
-							<?php endif; ?>
-						</select>
-					</div>
-					<button class="btn btn-primary">Update</button>
-				</form>
 			</div>
 		<?php endif; ?>
-		<div class="clear-flex"></div>
-	</div>
-</div>
-
-<div class="d-flex justify-content-center">
-	<div class="col-md-1">
-		<button class="btn btn-primary float-left" onclick="doPrint();">Print</button>
 	</div>
 </div>

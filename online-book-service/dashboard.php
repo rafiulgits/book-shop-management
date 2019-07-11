@@ -140,6 +140,7 @@
 	<div class="d-flex justify-content-center mt-3">
 		<div class="col-md-7" id="order-table">
 			<p class="display-4 text-center">Order Table</p>
+			<a class="btn btn-primary btn-block" href="report.php">See Report and Filter report</a>
 			<table class="table table-bordered bg-dark text-white">
 				<thead>
 					<th>ID</th>
