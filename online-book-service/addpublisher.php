@@ -5,7 +5,15 @@
 <?php endblock() ?>
 
 <?php 
-
+	// access checking
+	if(isset($_SESSION['is_stuff'])){
+		if($_SESSION['is_stuff'] != 't'){
+			header('Location: error.php');
+		}
+	}
+	else{
+		header('Location: error.php');
+	}
 
 	$db = DB::connection();
 	$failed = false;	

@@ -41,7 +41,7 @@
 				</li>
 
 				 <?php if(isset($_SESSION['userid'])): ?>
-				 	<?php if($_SESSION['is_stuff']): ?>
+				 	<?php if($_SESSION['is_stuff'] == 't'): ?>
 				 	<li class="nav-item">
 						<a class="nav-link" href="dashboard.php">Dashboard</a>
 					</li>

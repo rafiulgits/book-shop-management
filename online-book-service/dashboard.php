@@ -7,6 +7,17 @@
 
 <?php startblock('content') ?>
 	<?php 
+
+		// access checking
+		if(isset($_SESSION['is_stuff'])){
+			if($_SESSION['is_stuff'] != 't'){
+				header('Location: error.php');
+			}
+		}
+		else{
+			header('Location: error.php');
+		}
+
 		$db = DB::connection();
 		$res = pg_exec($db->getRefference(), "SELECT * FROM getBookStocks();");
 		$arr = [];

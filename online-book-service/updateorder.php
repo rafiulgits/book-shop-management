@@ -10,7 +10,16 @@
 <?php endblock(); ?>
 
 
-<?php 
+<?php
+	// access checking
+	if(isset($_SESSION['is_stuff'])){
+		if($_SESSION['is_stuff'] != 't'){
+			header('Location: error.php');
+		}
+	}
+	else{
+		header('Location: error.php');
+	}
 
 	$order_id = $_GET['id'];
 	$db = DB::connection();
@@ -88,6 +97,7 @@
 
 <div class="d-flex justify-content-center">
 	<div class="col-md-1">
-		<button class="btn btn-primary float-left" onclick="doPrint();">Print</button>
+		<button class="btn btn-primary btn-lg float-left" onclick="doPrint();">Print</button>
+		<br><br><br>
 	</div>
 </div>

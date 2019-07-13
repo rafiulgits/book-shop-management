@@ -1,6 +1,6 @@
 <?php include 'base.php'; ?>
 <?php startblock('header') ?>
-	<title>Sign Up</title>
+	<title>Add Stuff User</title>
 <?php endblock() ?>
 
 
@@ -41,7 +41,7 @@
 							'$phone'::varchar,
 							'$email'::varchar,
 							'$gender'::varchar,
-							false::bool,
+							true::bool,
 							false::bool,
 							'$address'::varchar,
 							'$hashed_password'::varchar
@@ -67,12 +67,7 @@
 		else{
 			$failed = true;
 		}
-
-
 	}
-
-
-
  ?>
 
 <div class="d-flex justify-content-center mt-4">

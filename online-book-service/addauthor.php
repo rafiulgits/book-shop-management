@@ -5,7 +5,18 @@
 <?php endblock() ?>
 
 
-<?php 	
+<?php
+	
+	// access checking
+	if(isset($_SESSION['is_stuff'])){
+		if($_SESSION['is_stuff'] != 't'){
+			header('Location: error.php');
+		}
+	}
+	else{
+		header('Location: error.php');
+	}
+
 	$failed = false;
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){
 		$author_name = $_POST['author_name'];

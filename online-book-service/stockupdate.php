@@ -6,6 +6,16 @@
 
 <?php 
 	
+	// access checking
+	if(isset($_SESSION['is_stuff'])){
+		if($_SESSION['is_stuff'] != 't'){
+			header('Location: error.php');
+		}
+	}
+	else{
+		header('Location: error.php');
+	}
+
 	$isbn = $_GET['isbn'];
 	$stock_query = "SELECT stock_id,price FROM book where isbn = $isbn";
 	$db = DB::connection();

@@ -6,7 +6,16 @@
 
 
 <?php 
-	
+	// access checking
+	if(isset($_SESSION['is_stuff'])){
+		if($_SESSION['is_stuff'] != 't'){
+			header('Location: error.php');
+		}
+	}
+	else{
+		header('Location: error.php');
+	}
+
 	$query = "SELECT * FROM voucher;";
 	$filtered = false;
 
@@ -66,7 +75,7 @@
 				<button class="btn btn-success" >Filter</button>
 			</form>
 			<br><br>
-			<h4 class="list-group-item">Filtered <?php echo $from_date." to ".$to_date; ?></h4>
+
 			<table class="table table-bordered bg-dark text-white">
 				<thead>
 					<th>ID</th>

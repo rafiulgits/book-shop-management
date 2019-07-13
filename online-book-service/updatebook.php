@@ -1,6 +1,16 @@
 <?php include 'base.php'; ?>
 
-<?php 
+<?php
+	// access checking
+	if(isset($_SESSION['is_stuff'])){
+		if($_SESSION['is_stuff'] != 't'){
+			header('Location: error.php');
+		}
+	}
+	else{
+		header('Location: error.php');
+	}
+
 	$isbn = $_GET['isbn'];
 	$db = DB::connection();
 
