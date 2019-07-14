@@ -20,7 +20,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<style type="text/css">
 		body, html {
-			background-color: #DAF7A6;
+			background-color: #EEEEEE;
 		}
 	</style>
 
@@ -29,7 +29,7 @@
 
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #DAF7A6;">
+	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #151515;">
 		<a class="navbar-brand" href="index.php">Nilkhet</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -72,7 +72,7 @@
 		</div>
 		<form class="form-inline" action="./search.php">
 			<input class="form-control mr-sm-2" style="width: 300px;" type="text" placeholder="Book,Category,Author,Publisher" name="query">
-			<button class="btn btn-outline-success" type="submit">Search</button>
+			<button class="btn btn-outline-light" type="submit">Search</button>
 		</form>
 	</nav>
 	<div id='base_content'>

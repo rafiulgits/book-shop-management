@@ -28,7 +28,9 @@
 		entry_copy int NOT NULL,
 		expenditure numeric(10,2) NOT NULL,
 		sold_copy int NOT NULL DEFAULT 0,
-		entry_by int REFERENCES account(id)
+		entry_by int REFERENCES account(id),
+		entry_date date DEFAULT CURRENT_DATE,
+		entry_time time DEFAULT CURRENT_TIME
 	)";
 
 	const TABLE_COUNTRY ="CREATE TABLE  IF NOT EXISTS country (

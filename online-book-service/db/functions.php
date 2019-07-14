@@ -80,14 +80,14 @@ $$";
 const GET_BOOK_STOCKS ="CREATE OR REPLACE FUNCTION getBookStocks()
 RETURNS TABLE(isbn bigint,book varchar,edition smallint,price numeric,
 			stock_id int, entry_copy int, sold_copy int, expenditure numeric,
-			staff_id int, staff_name varchar)
+			staff_id int, staff_name varchar, entry_date date, entry_time time)
 LANGUAGE plpgsql AS $$
 BEGIN
 	RETURN QUERY 
 	SELECT 
 		book.isbn,book.name,book.edition,book.price,
 		stock.id,stock.entry_copy,stock.sold_copy,stock.expenditure,
-		account.id,account.name
+		account.id,account.name,stock.entry_date,stock.entry_time
 	FROM stock 
 	INNER JOIN book ON stock.id=book.stock_id
 	INNER JOIN account ON account.id=stock.entry_by;
