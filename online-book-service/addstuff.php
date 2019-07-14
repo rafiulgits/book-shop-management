@@ -8,7 +8,17 @@
 	
 	// access checking
 	if(isset($_SESSION['userid'])){
-		header('Location: profile.php');
+		if($_SESSION['is_stuff'] == 't'){
+			if($_SESSION['is_admin'] == 'f'){
+				header('Location: error.php');
+			}
+		}
+		else{
+			header('Location: error.php');
+		}
+	}
+	else{
+		header('Location: error.php');
 	}
 
 	$failed = false;
@@ -62,7 +72,7 @@
 	 		$_SESSION['userid'] = $user->id;
 	 		$_SESSION['is_stuff'] = $user->is_stuff;
 	 		$_SESSION['is_admin'] = $user->is_admin;
-	 		header('Location: profile.php');
+	 		header('Location: dashboard.php');
 		}
 		else{
 			$failed = true;
@@ -72,7 +82,7 @@
 
 <div class="d-flex justify-content-center mt-4">
 	<div class="col-md-5 list-group-item">
-		<h4 class="lead text-center">Registration Form</h4>
+		<h4 class="lead text-center">New Stuff Form</h4>
 		<form method="POST">
 			<?php if($failed == true): ?>
 				<p class="alert alert-danger">creation failed</p>
@@ -96,7 +106,7 @@
 			<label>Password</label>
 			<input type="password" class="form-control" name="password">
 			<br>
-			<button class="btn btn-success">Sign up</button>
+			<button class="btn btn-success">Add</button>
 		</form>
 	</div>
 </div>

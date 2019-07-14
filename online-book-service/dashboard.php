@@ -2,6 +2,7 @@
 
 <?php startblock('header') ?>
 	<title>Dashboard : Nilkhet</title>
+	<link rel="stylesheet" type="text/css" href="static/css/dashboard.css">
 <?php endblock() ?>
 
 
@@ -66,14 +67,43 @@
 		$map = array('P' => 'Pending', 'A' => 'Accepted', 'D' => 'Delivered');
 	?>
 
+	<div class="d-flex justify-content-center mt-5">
+		<div class="list-group list-group-horizontal">
+			<a href="orderlist.php" class="btn btn-light btn-lg mr-3">
+				<img src="static/res/item-list.svg" class="icons"> Order List
+			</a>
+			<a href="addbook.php" class="btn btn-light btn-lg mr-3">
+				<img src="static/res/add-book.svg" class="icons"> Add Book
+			</a>
+			<a href="addstuff.php" class="btn btn-light btn-lg mr-3">
+				<img src="static/res/stuff.svg" class="icons"> Add Stuff
+			</a>
+			<a href="stufflist.php" class="btn btn-light btn-lg mr-3">
+				<img src="static/res/stufflist.svg" class="icons"> Stuff List
+			</a>
+		</div>
+	</div>
+	<div class="d-flex justify-content-center mt-5">
+		<div class="list-group list-group-horizontal">
+			<a href="addcategory.php" class="btn btn-light btn-lg mr-3">
+				<img src="static/res/category.svg" class="icons"> Add Category
+			</a>
+			<a href="addlanguage.php" class="btn btn-light btn-lg mr-3">
+				<img src="static/res/translate.svg" class="icons"> Add Language
+			</a>
+			<a href="addauthor.php" class="btn btn-light btn-lg mr-3">
+				<img src="static/res/author.svg" class="icons"> Add Author
+			</a>
+			<a href="addpublisher.php" class="btn btn-light btn-lg mr-3">
+				<img src="static/res/send.svg" class="icons"> Add Publisher
+			</a>
+		</div>
+	</div>
 	
-
+	<br><br><br>
 	<div class="d-flex justify-content-center mt-3">
 		<div class="col-md-12">
 			<p class="display-4 text-center">Book Stock Table</p>
-			<div class = "d-flax justify-content-center text-center">
-				<a class="btn btn-primary" href="addbook.php">Add new Book</a>
-			</div>
 			<table class="table table-bordered bg-dark text-white" id="book-table">
 				<thead>
 					<th>ISBN</th>
@@ -118,7 +148,6 @@
 					<a href="category.php?name=<?php echo $categoryList[$item]->name ?>" class="list-group-item"><?php echo $categoryList[$item]->name; ?> 
 						(<?php echo $categoryList[$item]->available; ?>)</a>
 					<?php endfor; ?>
-					<a href="addcategory.php" class="list-group-item list-group-item-primary">Add Category</a>
 				</div>
 			</div>
 			<div class="col-md-3">
@@ -128,7 +157,6 @@
 					<a href="author.php?name=<?php echo $authorList[$item]->name ?>" class="list-group-item"><?php echo $authorList[$item]->name; ?> 
 						(<?php echo $authorList[$item]->available; ?>)</a>
 					<?php endfor; ?>
-					<a href="addauthor.php" class="list-group-item list-group-item-primary">Add Author</a>
 				</div>
 			</div>
 			<div class="col-md-3">
@@ -138,7 +166,6 @@
 					<a href="publisher.php?name=<?php echo $publisherList[$item]->name ?>" class="list-group-item"><?php echo $publisherList[$item]->name; ?> 
 						(<?php echo $publisherList[$item]->available; ?>)</a>
 					<?php endfor; ?>
-					<a href="addpublisher.php" class="list-group-item list-group-item-primary">Add Publisher</a>
 				</div>
 			</div>
 			<div class="col-md-3">
@@ -148,42 +175,10 @@
 					<a href="publisher.php?name=<?php echo $languageList[$item]->name ?>" class="list-group-item"><?php echo $languageList[$item]->name; ?> 
 						(<?php echo $languageList[$item]->available; ?>)</a>
 					<?php endfor; ?>
-					<a href="addlanguage.php" class="list-group-item list-group-item-primary">Add Language</a>
 				</div>
 			</div>
 		</div>
 	</div>
 	<br><br>
 
-
-	<div class="d-flex justify-content-center mt-3">
-		<div class="col-md-12" id="order-table">
-			<p class="display-4 text-center">Order Table</p>
-			<a class="btn btn-primary btn-lg" href="report.php">See Report and Filter report</a>
-			<table class="table table-bordered bg-dark text-white">
-				<thead>
-					<th>ID</th>
-					<th>Order By</th>
-					<th>Address</th>
-					<th>Total</th>
-					<th>Time</th>
-					<th>Date</th>
-					<th>Status</th>
-				</thead>
-				<tbody>
-					<?php for($item=0; $item<count($orderList); $item++): ?>
-						<tr>
-							<td><a href="updateorder.php?id=<?php echo  $orderList[$item]->id ?>"><?php echo $orderList[$item]->id; ?></a></td>
-							<td><?php echo $orderList[$item]->name; ?></td>
-							<td><?php echo $orderList[$item]->address; ?></td>
-							<td><?php echo $orderList[$item]->total_price; ?> TK</td>
-							<td><?php echo $orderList[$item]->order_time; ?></td>
-							<td><?php echo $orderList[$item]->order_date; ?></td>
-							<td><?php echo $map[$orderList[$item]->status]; ?></td>
-						</tr>
-					<?php endfor; ?>
-				</tbody>
-			</table>
-		</div>
-	</div>
 <?php endblock() ?>
