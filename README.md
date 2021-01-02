@@ -1,5 +1,5 @@
-# :page_with_curl: SWE328
-#### Database management project with PHP web development framework and PostgreSQL database
+# :page_with_curl: Book Shop Management
+#### A bookshop management project with PHP and PostgreSQL database
 ***
 <h1 align="center">
  <a href=https://github.com/rafiulgits/swe328/wiki>Wikis</a>
